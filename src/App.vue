@@ -38,19 +38,19 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <TopToolBar />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import TopToolBar from './components/TopToolBar'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    TopToolBar
   },
 
   data: () => ({
