@@ -1,6 +1,5 @@
 <template>
     <v-row align="center" justify="center">
-        {{form}}
           <v-col class="text-center">
             <v-row align="center">
               <v-row justify="space-around">
