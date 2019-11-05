@@ -31,7 +31,7 @@
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height" fluid>
+      <v-container fluid>
         <v-row>
           <v-col>
             <v-expansion-panels>
