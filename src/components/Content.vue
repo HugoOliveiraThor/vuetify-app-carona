@@ -52,6 +52,7 @@
                     label="Volta">
                 </v-switch>
               </v-row>
+              <v-btn block color="primary" >Registrar corrida</v-btn>
               <v-divider></v-divider>
             </v-row>
           </v-col>
