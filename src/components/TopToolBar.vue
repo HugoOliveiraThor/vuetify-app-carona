@@ -32,6 +32,12 @@
 
     <v-content>
       <v-container fluid>
+        <v-row align="center" justify="center">
+          {{dayOfTheWeek}}
+        </v-row>
+        <v-row align="center" justify="center">
+          {{formatDate}}
+        </v-row>
         <v-row>
           <v-col>
             <v-expansion-panels>
@@ -57,6 +63,7 @@
 
 <script>
 import contentUser from './Content'
+import moment from 'moment'
 export default {
   name: "LayoutsDemosBaselineFlipped",
   components: {
@@ -64,6 +71,14 @@ export default {
   },
   props: {
     source: String
+  },
+  computed: {
+    formatDate () {
+      return moment().format('DD/MM/YYYY') 
+    },
+    dayOfTheWeek () {
+      return moment(new Date(), "D_M_YYYY").locale('pt-br').format('dddd')
+    }
   },
   data: () => ({
     drawer: null,
@@ -73,7 +88,8 @@ export default {
       { name: "Hugo Oliveira", date: new Date() },
       { name: "Alex Silva", date: new Date() },
       { name: "Irwing", date: new Date() },    
-    ]
+    ],
+    actualDate:''
   })
 };
 </script>
