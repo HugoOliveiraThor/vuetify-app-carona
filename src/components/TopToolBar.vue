@@ -38,18 +38,29 @@
         <v-row align="center" justify="center">
           {{formatDate}}
         </v-row>
-        <v-row>
-          <v-col>
-            <v-expansion-panels>
-              <v-expansion-panel v-for="(item,i) in list" :key="i">
-                <v-expansion-panel-header>{{item.name}}</v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <contentUser :form="item" />
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-col>
-        </v-row>
+        <v-row dense>
+        <v-col
+          v-for="(item, i) in list"
+          :key="i"
+          cols="12"
+        >
+          <v-card>
+            <v-row>
+              <v-col cols="6">
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <v-card-subtitle v-text="item.name"></v-card-subtitle>
+              </div>
+            </v-col>
+            <v-col cols="6" class="text-center">
+              <v-btn 
+                color="primary"
+                @click="() => register(item)"  
+              >Adicionar</v-btn>
+            </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
       </v-container>
     </v-content>
 
@@ -62,13 +73,14 @@
 </template>
 
 <script>
-import contentUser from './Content'
+// import contentUser from './Content'
 import moment from 'moment'
+moment.locale('pt-br')
 export default {
   name: "LayoutsDemosBaselineFlipped",
-  components: {
-    contentUser
-  },
+  // components: {
+  //   contentUser
+  // },
   props: {
     source: String
   },
@@ -80,16 +92,38 @@ export default {
       return moment(new Date(), "D_M_YYYY").locale('pt-br').format('dddd')
     }
   },
+  mounted() {
+    // let v = localStorage.getItem('hugo')
+    // if(localStorage.getItem('corridas')) {
+
+    // }
+    // console.log('v', v)
+  },
   data: () => ({
     drawer: null,
     form: {},
     menu: "",
     list: [
-      { name: "Hugo Oliveira", date: new Date() },
-      { name: "Alex Silva", date: new Date() },
-      { name: "Irwing", date: new Date() },    
+      { id: 1, name: "Hugo Oliveira", date: moment().format('LLL') },
+      { id: 2, name: "Alex Silva", date: moment().toDate() },
+      { id: 3 , name: "Irwing", date: moment().toDate() },    
     ],
     actualDate:''
-  })
+  }),
+  methods: {
+    register(register) {
+      this.verifyConditionToAdd(register)
+      console.log('Registrou', register)
+    },
+    verifyConditionToAdd (register) {
+      if(localStorage.getItem('corridas')) {
+        let u = localStorage.getItem('corridas')
+        console.log('u', u)
+      } else {
+        console.log('Entrou', JSON.stringify(register))
+        localStorage.setItem('corridas', JSON.stringify(register))
+      }
+    }
+  }
 };
 </script>
